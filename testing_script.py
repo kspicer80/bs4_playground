@@ -5,6 +5,8 @@ pd. set_option('display.max_columns', 500)
 pd. set_option('display.width', 1000)
 from bs4 import BeautifulSoup
 
+# Goals: so, let's do a little BeautifulSoup parsing of tables; I've got a table at the url below that has a table of info I want to pull down for my best buddy ...
+
 # Following the lead of Thiago Santos Figueira at https://medium.com/geekculture/web-scraping-tables-in-python-using-beautiful-soup-8bbc31c5803e
 
 url = "https://blog.powerscore.com/lsat/top-100-law-school-application-deadlines-2022-edition/"
@@ -34,8 +36,11 @@ for row in table.tbody.find_all('tr'):
         
         df = df.append({'2021 Rank': school_rank, 'Law School Name': school_name, 'Application Deadline': app_deadline, 'Latest Acceptable LSAT': latest_date, 'Accept the GRE?': gre, 'Notes from the University': notes, 'Difference from last cycle': difference_from_last_year}, ignore_index=True)
 
-df = df.assign(Index=range(len(df))).set_index('2021 Rank')
-print(df.to_markdown)
+#df = df.assign(Index=range(len(df))).set_index('2021 Rank')
+
+df = df.set_index('2021 Rank')
+print(df.head())
+print(df.to_markdown())
 
 # An Alternative Way to Do all This (although the website here is blocking the request)
 
