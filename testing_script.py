@@ -1,9 +1,9 @@
+from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 pd. set_option('display.max_rows', 500)
 pd. set_option('display.max_columns', 500)
 pd. set_option('display.width', 1000)
-from bs4 import BeautifulSoup
 
 # Goals: so, let's do a little BeautifulSoup parsing of tables; I've got a table at the url below that has a table of info I want to pull down for my best buddy ...
 
@@ -35,10 +35,8 @@ for row in table.tbody.find_all('tr'):
         difference_from_last_year = columns[6].text.strip()
         
         df = df.append({'2021 Rank': school_rank, 'Law School Name': school_name, 'Application Deadline': app_deadline, 'Latest Acceptable LSAT': latest_date, 'Accept the GRE?': gre, 'Notes from the University': notes, 'Difference from last cycle': difference_from_last_year}, ignore_index=True)
-
-#df = df.assign(Index=range(len(df))).set_index('2021 Rank')
-
-df = df.set_index('2021 Rank')
+                
+df = df.set_index("2021 Rank")
 print(df.head())
 print(df.to_markdown())
 
