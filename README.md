@@ -1,2 +1,2 @@
 # bs4_playground
- Playing around with parsing HMTL with BS4
+ A simple repo for playing around with parsing HMTL with Beautiful Soup (BS4).
